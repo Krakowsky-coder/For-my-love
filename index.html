@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dla Karo</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="favicon.png">
 </head>
-<body class="gradient-background">
-  <div class="flex items-center justify-center h-screen">
+  <div class="flex items-center justify-center h-screen px-4">
     <div class="flex flex-col items-center p-4">
-      <img id="imageDisplay" src="Image1.gif" class="rounded-md h-[300px]" style="object-fit: cover;" />
-      <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4">Zostaniesz moją walentynką?</h2>
-      <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
+      <!-- Obraz z automatycznym dostosowaniem -->
+      <img id="imageDisplay" src="Image1.gif" alt="Cute Image"
+           class="rounded-md w-full max-w-sm h-auto object-cover" />
+
+      <!-- Tekst Walentynki -->
+      <h2 id="valentineQuestion"
+          class="text-2xl md:text-4xl font-bold italic text-[#bd1e59] my-3 text-center">
+        Karo zostaniesz moją walentynką?
+      </h2>
+
+      <!-- Przyciski odpowiedzi -->
+      <div class="flex flex-col sm:flex-row gap-4 pt-6 items-center" id="responseButtons">
         <button id="yesButton"
-          class=" inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-4 py-2 bg-green-500 text-white transition">
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg md:text-xl font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-green-400 min-h-12 min-w-[75px] px-6 py-3 bg-green-500 text-white transition">
           Tak
         </button>
         <button id="noButton"
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium transition disabled:pointer-events-none disabled:opacity-50 hover:bg-red-700 h-12 min-w-[75px] w-auto px-4 py-2 bg-red-500 text-white">
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg md:text-xl font-medium transition disabled:pointer-events-none disabled:opacity-50 hover:bg-red-700 min-h-12 min-w-[75px] px-6 py-3 bg-red-500 text-white">
           Nie
         </button>
       </div>
     </div>
   </div>
 
-    <script type="module">
+  <!-- Skrypt obsługujący logikę -->
+  <script type="module">
     const yesButton = document.getElementById('yesButton');
     const noButton = document.getElementById('noButton');
     const imageDisplay = document.getElementById('imageDisplay');
@@ -33,9 +42,6 @@
     const responseButtons = document.getElementById('responseButtons');
   
     let noClickCount = 0;
-    let buttonHeight = 38; // Starting height in pixels
-    let buttonWidth = 70;
-    let fontSize = 15; // Starting font size in pixels
     const imagePaths = [
       "Image1.gif",
       "Image2.gif",
@@ -50,24 +56,19 @@
       if (noClickCount < 5) {
         noClickCount++;
         imageDisplay.src = imagePaths[noClickCount];
-        buttonHeight += 20; // Increase height by 5px on each click
-        buttonWidth += 20;
-        fontSize += 13; // Increase font size by 1px on each click
-        yesButton.style.height = `${buttonHeight}px`; // Update button height
-        yesButton.style.width = `${buttonWidth}px`;
-        yesButton.style.fontSize = `${fontSize}px`; // Update font size
-        if (noClickCount < 7) {
+        if (noClickCount < 6) {
             noButton.textContent = ["Nie", "Mam inne plany", "Nic z tego", "Zapomnij", "Absolutnie", "No weeeeź"][noClickCount];
         }
+      } else {
+        noButton.disabled = true; // Dezaktywacja przycisku po ostatnim kliknięciu
       }
     });
   
     yesButton.addEventListener('click', () => {
-      imageDisplay.src = 'Image7.gif'; // Change to image7.gif
-      valentineQuestion.textContent = "Yaaaas!"; // Change the question text
-      responseButtons.style.display = 'none'; // Hide both buttons
+      imageDisplay.src = 'Image7.gif'; // Zmiana obrazu
+      valentineQuestion.textContent = "Yaaaas!"; // Zmiana tekstu
+      responseButtons.style.display = 'none'; // Ukrycie przycisków
     });
-  </script>  
-
+  </script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <body class="gradient-background">
   <div class="flex items-center justify-center h-screen">
     <div class="flex flex-col items-center p-4">
-      <img id="imageDisplay" src="./images/image1.gif" class="rounded-md h-[300px]" style="object-fit: cover;" />
+      <img id="imageDisplay" src="image1.gif" class="rounded-md h-[300px]" style="object-fit: cover;" />
       <h2 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4">Zostaniesz moją walentynką?</h2>
       <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
         <button id="yesButton"
@@ -33,37 +33,37 @@
     const responseButtons = document.getElementById('responseButtons');
   
     let noClickCount = 0;
-    let buttonHeight = 48; // Starting height in pixels
-    let buttonWidth = 80;
-    let fontSize = 20; // Starting font size in pixels
+    let buttonHeight = 38; // Starting height in pixels
+    let buttonWidth = 70;
+    let fontSize = 15; // Starting font size in pixels
     const imagePaths = [
-      "./images/Image1.gif",
-      "./images/Image2.gif",
-      "./images/Image3.gif",
-      "./images/Image4.gif",
-      "./images/Image5.gif",
-      "./images/image6.gif",
-      "./images/Image7.gif"
+      "Image1.gif",
+      "Image2.gif",
+      "Image3.gif",
+      "Image4.gif",
+      "Image5.gif",
+      "image6.gif",
+      "Image7.gif"
     ];
   
     noButton.addEventListener('click', function() {
       if (noClickCount < 5) {
         noClickCount++;
         imageDisplay.src = imagePaths[noClickCount];
-        buttonHeight += 35; // Increase height by 5px on each click
-        buttonWidth += 35;
-        fontSize += 25; // Increase font size by 1px on each click
+        buttonHeight += 20; // Increase height by 5px on each click
+        buttonWidth += 20;
+        fontSize += 13; // Increase font size by 1px on each click
         yesButton.style.height = `${buttonHeight}px`; // Update button height
         yesButton.style.width = `${buttonWidth}px`;
         yesButton.style.fontSize = `${fontSize}px`; // Update font size
-        if (noClickCount < 6) {
+        if (noClickCount < 7) {
             noButton.textContent = ["Nie", "Mam inne plany", "Nic z tego", "Zapomnij", "Absolutnie", "No weeeeź"][noClickCount];
         }
       }
     });
   
     yesButton.addEventListener('click', () => {
-      imageDisplay.src = './images/Image7.gif'; // Change to image7.gif
+      imageDisplay.src = 'Image7.gif'; // Change to image7.gif
       valentineQuestion.textContent = "Yaaaas!"; // Change the question text
       responseButtons.style.display = 'none'; // Hide both buttons
     });
